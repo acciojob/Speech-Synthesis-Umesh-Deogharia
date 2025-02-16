@@ -37,6 +37,23 @@
   const stopButton = document.querySelector('#stop');
 
   //Your code goes here
+	speechSynthesis.onvoiceschanged = function() {
+	voices = speachSynthesis.getVoices();
+	voicesDropdown.innerHTML = voices
+	.map(voice => `<option value="${voice.name}">${voice.name} (${voice.lang})</option>`).join("");	
+}
+
+	// setup the event liseners
+
+	speakButton.addEventLisener("click", speak);
+	stopButton.addEventLisener("click", ()=> speechSynthesis.cancel());
+
+	voicesDropdown.addEventLisener("change", setVoice);
+	options.forEach((option)=>option.addEventListener("change", songChanges))
+	
+	
+	
+	
 </script>
 
 </body>
