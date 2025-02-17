@@ -29,7 +29,7 @@ options.forEach((option) => option.addEventListener("change", songChanges));
 
 function speak(e, setVoiceValue = demo) {
   // msg.voice = voices[voicesDropdown.value];
-  if (!textToSpeak.value) {
+  if (!textToSpeak.value.trim()) {
     alert("Please Enter Something");
   }
 
