@@ -29,16 +29,17 @@
     </div>
 
 <script>
-  const msg = new SpeechSynthesisUtterance();
+	
   let voices = [];
   const voicesDropdown = document.querySelector('[name="voice"]');
   const options = document.querySelectorAll('[type="range"], [name="text"]');
   const speakButton = document.querySelector('#speak');
   const stopButton = document.querySelector('#stop');
-
+  const textToSpeak = document.querySelectorAll('[name = "text"]');
+  const msg = new SpeechSynthesisUtterance(textToSpeak);
   //Your code goes here
 	speechSynthesis.onvoiceschanged = function() {
-	voices = speachSynthesis.getVoices();
+	voices = speechSynthesis.getVoices();
 	voicesDropdown.innerHTML = voices
 	.map(voice => `<option value="${voice.name}">${voice.name} (${voice.lang})</option>`).join("");	
 }
@@ -51,7 +52,16 @@
 	voicesDropdown.addEventLisener("change", setVoice);
 	options.forEach((option)=>option.addEventListener("change", songChanges))
 	
-	
+	function speak(){
+		msg.voice = voice[voicesDropdown.value];
+		voices = speechSynthesis.speak(msg);
+	}
+	function setVoice(){
+		
+	}
+	function songChanges(){
+		
+	}
 	
 	
 </script>
